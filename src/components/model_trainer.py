@@ -2,10 +2,10 @@ import os
 import sys
 from dataclasses import dataclass
 from catboost import CatBoostRegressor
-from sklearn.ensemble import(
-     AdaBoostRegressor,
-     GradientBoostingRegressor,
-     RandomForestRegressor,
+from sklearn.ensemble import (
+    AdaBoostRegressor,
+    GradientBoostingRegressor,
+    RandomForestRegressor,
 )
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
@@ -77,6 +77,7 @@ class ModelTrainer:
                     # 'loss':['linear','square','exponential'],
                     'n_estimators': [8,16,32,64,128,256]
                 }
+                
             }
 
             model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,
@@ -90,6 +91,7 @@ class ModelTrainer:
             best_model_name = list(model_report.keys())[
                 list(model_report.values()).index(best_model_score)
             ]
+            
             best_model = models[best_model_name]
 
             if best_model_score<0.6:
